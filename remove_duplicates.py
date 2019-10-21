@@ -1,16 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[37]:
-
-
 import os
 import io
 import numpy as np
 from wand.image import Image
 from wand.display import display
 from PyPDF2 import PdfFileReader, PdfFileWriter
-import matplotlib.pyplot as plt
 
 get_ipython().run_line_magic('matplotlib', 'inline')
 
@@ -66,10 +61,6 @@ def rem_dup(in_fn, out_fn=None):
             pdf_writer.addPage(curr)
         else:
             print(f"Removed page {page+2} with simmilarity {simmi*100}%")
-            _, splt = plt.subplots(1,2, figsize=(20,20))
-            splt[0].imshow(pdf_page_to_np(last))
-            splt[1].imshow(pdf_page_to_np(curr))
-            plt.show()
     # write output
     with open(out_fn, 'wb') as out:
         pdf_writer.write(out)
